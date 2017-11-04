@@ -37,6 +37,9 @@ void State::stopGame() {
   isRunning = false;
 }
 
+Level* State::getCurrentLevel() { 
+  return currentLevel;
+}
 // iterate through the list of entites and tear them all up
 State::~State() {
   for (std::unordered_map<std::string, Entity*>::iterator it = this->entities->begin(); it != this->entities->end(); ++it) {

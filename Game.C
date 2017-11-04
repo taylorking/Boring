@@ -2,8 +2,8 @@
 #include <unordered_map>
 #include <string>
 #include "Level.h"
-#include "Display.h"
 #include "Entity.h"
+#include "Display.h"
 #include "State.h"
 #include "Control.h"
 #include "Game.h"
@@ -24,6 +24,6 @@ void Game::start() {
   State* currentState = State::getStateInstance();
   currentState->startGame();
   while (currentState->getIsRunning()) {
- 
+  
   }
 }

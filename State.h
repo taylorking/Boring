@@ -10,6 +10,7 @@ class State {
     bool getIsRunning();
     void startGame();
     void stopGame();
+    Level* getCurrentLevel();
   private: 
     static State* stateInstance;
     std::unordered_map<std::string, Entity*>* entities;

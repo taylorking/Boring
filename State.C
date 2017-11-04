@@ -4,6 +4,8 @@
 #include "Entity.h"
 #include "State.h"
 
+State* State::stateInstance = NULL;
+
 State::State() {
   this->entities = new std::unordered_map<std::string, Entity*>;
 }
@@ -11,7 +13,6 @@ State::State() {
 Entity* State::getEntity(std::string name) { 
 
 }
-
 Entity* State::getPlayer() { 
   std::unordered_map<std::string, Entity*>::const_iterator got = this->entities->find("player");
   if (got == this->entities->end()) {
@@ -30,4 +31,10 @@ State::~State() {
       delete got->second;
   }
   delete this->entities;
+}
+
+State* State::getStateInstance() { 
+  if (stateInstance == NULL)
+    stateInstance = new State();
+  return stateInstance;
 }

@@ -1,14 +1,16 @@
+#include <SDL2/SDL.h>
 #include <unordered_map>
 #include <string>
+#include "Level.h"
 #include "Display.h"
 #include "Entity.h"
 #include "State.h"
 #include "Control.h"
 #include "Game.h"
+static int running = 1;
 
 Game::Game() {
-  this->video = new Display;
-  this->state = new State;
+
 }
 
 
@@ -16,9 +18,11 @@ Game::~Game() {
   delete this->video;
 }
 
-State* Game::getState() { 
-  return this->state;
-}
 void Game::start() {
-
+  this->video = new Display("Test Game");
+  
+  this->video->playIntro();
+  while (running) {
+    State* currentState = State::getStateInstance();
+  }
 }

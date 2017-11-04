@@ -4,6 +4,5 @@ class Game {
     ~Game();
     void start();
   private:
-    Display* video;
-    Control* control;
+    Display* display;
 };

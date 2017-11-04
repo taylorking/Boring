@@ -4,8 +4,8 @@
 #include "Level.h"
 #include "Entity.h"
 #include "Display.h"
-#include "State.h"
 #include "Control.h"
+#include "State.h"
 #include "Game.h"
 
 Game::Game() {
@@ -14,16 +14,18 @@ Game::Game() {
 
 
 Game::~Game() {
-  delete this->video;
+  delete this->display;
 }
 
 void Game::start() {
-  this->video = new Display("Test Game");
+  display = new Display("Test Game");
   
-  this->video->playIntro();
+  display->playIntro();
   State* currentState = State::getStateInstance();
   currentState->startGame();
+  Control* controller = currentState->attachControlToPlayerEntity();
   while (currentState->getIsRunning()) {
-  
+    // trigger drawing and rendering the scene
+    display->update();
   }
 }

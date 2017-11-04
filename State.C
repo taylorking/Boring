@@ -2,6 +2,8 @@
 #include <string>
 #include <unordered_map>
 #include "Entity.h"
+#include "Player.h"
+#include "Control.h"
 #include "Level.h"
 #include "State.h"
 
@@ -11,8 +13,16 @@ State::State() {
   this->entities = new std::unordered_map<std::string, Entity*>;
 }
 
-Entity* State::getEntity(std::string name) { 
+Control* State::attachControlToPlayerEntity() { 
+  Entity* player = this->getPlayer();
+  return new Control(player);
+}
 
+Entity* State::getEntity(std::string name) { 
+  std::unordered_map<std::string, Entity*>::const_iterator got = this->entities->find(name);
+  if (got == this->entities->end()) 
+    return NULL;
+  return got->second;
 }
 
 Entity* State::getPlayer() { 
@@ -30,6 +40,7 @@ bool State::getIsRunning() {
 }
 
 void State::startGame() {
+  this->entities->insert(std::make_pair<std::string, Entity*>("player", new Player()));
   isRunning = true;
 }
 

@@ -3,4 +3,6 @@ class Control {
     ~Control();
     Control(Entity* controlled);
     void update();
+  private:
+    Entity* controlled;
 };

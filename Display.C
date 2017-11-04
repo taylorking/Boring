@@ -6,6 +6,7 @@
 #include "Entity.h"
 #include "Level.h"
 #include "Display.h" 
+#include "Control.h"
 #include "State.h"
 static const int WINDOW_WIDTH = 800;
 static const int WINDOW_HEIGHT = 600;

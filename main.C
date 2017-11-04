@@ -2,10 +2,10 @@
 #include <unordered_map>
 #include <string>
 #include "Entity.h"
-#include "Display.h"
 #include "Level.h"
-#include "State.h"
+#include "Display.h"
 #include "Control.h"
+#include "State.h"
 #include "Game.h"
 // this class just loads and runs the game
 

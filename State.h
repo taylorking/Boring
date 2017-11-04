@@ -11,6 +11,7 @@ class State {
     void startGame();
     void stopGame();
     Level* getCurrentLevel();
+    Control* attachControlToPlayerEntity();
   private: 
     static State* stateInstance;
     std::unordered_map<std::string, Entity*>* entities;

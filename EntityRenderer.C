@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h> 
 #include <string>
 #include <unordered_map>
 #include "Entity.h"
@@ -19,7 +20,9 @@ void EntityRenderer::render() {
 }
 
 void EntityRenderer::renderPlayer() { 
-  // need to l
+  State* gameState = State::getStateInstance();
+  Entity* player = gameState->getPlayer();
+
 }
 
 void EntityRenderer::renderNonPlayers() {

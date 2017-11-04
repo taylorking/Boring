@@ -8,3 +8,7 @@ Control::Control(Entity* controlled) {
 Control::~Control() {
 
 }
+
+void Control::poll() {
+
+}

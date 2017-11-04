@@ -25,6 +25,10 @@ void Game::start() {
   currentState->startGame();
   Control* controller = new Control(currentState->getPlayer());
   while (currentState->getIsRunning()) {
+    
+    // the controller will handle getting input and manipulating entity state directly.
+    controller->poll();
+    currentState->update();
     // trigger drawing and rendering the scene
     display->update();
   }

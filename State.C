@@ -46,6 +46,12 @@ int State::getCurrentLevelNumber() {
   return levelNumber;
 }
 
+
+// Apply physics to entities on frame tick.
+void State::update() {
+
+}
+
 // iterate through the list of entites and tear them all up
 State::~State() {
   for (std::unordered_map<std::string, Entity*>::iterator it = this->entities->begin(); it != this->entities->end(); ++it) {
@@ -56,6 +62,7 @@ State::~State() {
   }
   delete this->entities;
 }
+
 
 State* State::getStateInstance() { 
   if (stateInstance == NULL)

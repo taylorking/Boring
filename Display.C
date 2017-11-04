@@ -2,6 +2,7 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_image.h>
 #include <unordered_map>
 #include "Entity.h"
 #include "Level.h"
@@ -22,7 +23,7 @@ Display::Display(std::string gameTitle) {
     std::cout << "Error setting up SDL: " << SDL_GetError() << std::endl;
     gameState->stopGame();
   }
-
+  IMG_Init(IMG_INIT_PNG);
   this->window = SDL_CreateWindow(gameTitle.c_str(),
      WINDOW_X, WINDOW_Y, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
   if (this->window == NULL) {
@@ -78,6 +79,7 @@ void Display::playIntro() {
   message = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
   SDL_RenderCopy(renderer, message, NULL, &messageRect);
   SDL_RenderPresent(renderer);
+  SDL_Delay(3000);
 }
 
 // Invoke outside renderers and then just render

@@ -4,8 +4,8 @@
 #include <SDL2/SDL_ttf.h>
 #include <unordered_map>
 #include "Entity.h"
-#include "Display.h" 
 #include "Level.h"
+#include "Display.h" 
 #include "State.h"
 static const int WINDOW_WIDTH = 800;
 static const int WINDOW_HEIGHT = 600;
@@ -34,6 +34,8 @@ Display::~Display() {
 
 
 void Display::playIntro() {
+ // Might move this to a pp macro at some point
+  
   // SDL_Surface* renderingSurface = SDL_GetWindowSurface(this->window);
   SDL_Renderer* renderer = SDL_CreateRenderer(this->window, -1, 0);
   if (TTF_Init() == -1)  {
@@ -45,10 +47,33 @@ void Display::playIntro() {
     std::cout << "Couldn't play the intro :( I wont stop the game though.\n" <<  SDL_GetError() << std::endl;
   }
   SDL_Color white = {255, 255, 255};
+  SDL_Rect messageRect;
+  int TEXT_HEIGHT = 100;
+  int TEXT_WIDTH =400;
+  
+  messageRect.x = WINDOW_WIDTH / 2 - (TEXT_WIDTH / 2);
+  messageRect.y = WINDOW_HEIGHT / 2 - (TEXT_HEIGHT / 2);
+  messageRect.w = TEXT_WIDTH;
+  messageRect.h = TEXT_HEIGHT;
 
-  SDL_Surface* surfaceMessage = TTF_RenderText_Solid(sans, "A boring video game.\n Taylor King™ 2017", white);
+  SDL_Surface* surfaceMessage = TTF_RenderText_Solid(sans, "A boring video game.", white);
   SDL_Texture* message = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
-  SDL_RenderCopy(renderer, message, NULL, NULL);
+  
+  SDL_RenderCopy(renderer, message, NULL, &messageRect);
+  
+  TEXT_HEIGHT = 50;
+  TEXT_WIDTH = 200; 
+  
+  messageRect.x = WINDOW_WIDTH / 2 - (TEXT_WIDTH / 2);
+  messageRect.y = WINDOW_HEIGHT - TEXT_HEIGHT;
+  messageRect.w = TEXT_WIDTH;
+  messageRect.h = TEXT_HEIGHT;
+
+  sans = TTF_OpenFont("/Library/Fonts/Arial.ttf", 12);
+  
+  surfaceMessage = TTF_RenderText_Solid(sans, "Taylor King 2017", white);
+  message = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
+  SDL_RenderCopy(renderer, message, NULL, &messageRect);
   SDL_RenderPresent(renderer);
 }
 

@@ -7,7 +7,6 @@
 #include "State.h"
 #include "Control.h"
 #include "Game.h"
-static int running = 1;
 
 Game::Game() {
 
@@ -22,7 +21,9 @@ void Game::start() {
   this->video = new Display("Test Game");
   
   this->video->playIntro();
-  while (running) {
-    State* currentState = State::getStateInstance();
+  State* currentState = State::getStateInstance();
+  currentState->startGame();
+  while (currentState->getIsRunning()) {
+ 
   }
 }

@@ -2,6 +2,7 @@
 #include <string>
 #include <unordered_map>
 #include "Entity.h"
+#include "Level.h"
 #include "State.h"
 
 State* State::stateInstance = NULL;
@@ -13,6 +14,7 @@ State::State() {
 Entity* State::getEntity(std::string name) { 
 
 }
+
 Entity* State::getPlayer() { 
   std::unordered_map<std::string, Entity*>::const_iterator got = this->entities->find("player");
   if (got == this->entities->end()) {
@@ -22,6 +24,19 @@ Entity* State::getPlayer() {
   }
   return got->second;
 }
+
+bool State::getIsRunning() {
+  return isRunning;
+}
+
+void State::startGame() {
+  isRunning = true;
+}
+
+void State::stopGame() {
+  isRunning = false;
+}
+
 // iterate through the list of entites and tear them all up
 State::~State() {
   for (std::unordered_map<std::string, Entity*>::iterator it = this->entities->begin(); it != this->entities->end(); ++it) {
@@ -38,3 +53,4 @@ State* State::getStateInstance() {
     stateInstance = new State();
   return stateInstance;
 }
+

@@ -7,8 +7,12 @@ class State {
     void updateEntity(std::string name, Entity entity);
     Entity* getPlayer();
     static State* getStateInstance();
+    bool getIsRunning();
+    void startGame();
+    void stopGame();
   private: 
     static State* stateInstance;
     std::unordered_map<std::string, Entity*>* entities;
     Level* currentLevel;
+    bool isRunning;
 };

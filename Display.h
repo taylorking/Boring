@@ -4,8 +4,6 @@ class Display {
     ~Display();
     void playIntro();
     void update();
-    void drawEntity(Entity* entity);
-    void drawLevelEnvironment(Level* level);
   private:
     SDL_Window* window;
 };

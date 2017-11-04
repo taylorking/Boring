@@ -23,7 +23,7 @@ void Game::start() {
   display->playIntro();
   State* currentState = State::getStateInstance();
   currentState->startGame();
-  Control* controller = currentState->attachControlToPlayerEntity();
+  Control* controller = new Control(currentState->getPlayer());
   while (currentState->getIsRunning()) {
     // trigger drawing and rendering the scene
     display->update();

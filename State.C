@@ -3,19 +3,12 @@
 #include <unordered_map>
 #include "Entity.h"
 #include "Player.h"
-#include "Control.h"
-#include "Level.h"
 #include "State.h"
 
 State* State::stateInstance = NULL;
 
 State::State() {
   this->entities = new std::unordered_map<std::string, Entity*>;
-}
-
-Control* State::attachControlToPlayerEntity() { 
-  Entity* player = this->getPlayer();
-  return new Control(player);
 }
 
 Entity* State::getEntity(std::string name) { 
@@ -40,6 +33,7 @@ bool State::getIsRunning() {
 }
 
 void State::startGame() {
+  levelNumber = 0;
   this->entities->insert(std::make_pair<std::string, Entity*>("player", new Player()));
   isRunning = true;
 }
@@ -48,9 +42,10 @@ void State::stopGame() {
   isRunning = false;
 }
 
-Level* State::getCurrentLevel() { 
-  return currentLevel;
+int State::getCurrentLevelNumber() {
+  return levelNumber;
 }
+
 // iterate through the list of entites and tear them all up
 State::~State() {
   for (std::unordered_map<std::string, Entity*>::iterator it = this->entities->begin(); it != this->entities->end(); ++it) {

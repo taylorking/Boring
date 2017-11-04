@@ -7,6 +7,8 @@
 #include "Level.h"
 #include "Display.h" 
 #include "Control.h"
+#include "Renderer.h"
+#include "EntityRenderer.h"
 #include "State.h"
 static const int WINDOW_WIDTH = 800;
 static const int WINDOW_HEIGHT = 600;
@@ -78,11 +80,17 @@ void Display::playIntro() {
   SDL_RenderPresent(renderer);
 }
 
-void Display::drawEntity(Entity* entity) {
-
-}
-
-
+// Invoke outside renderers and then just render
 void Display::update() {
+  SDL_Renderer* renderer = SDL_CreateRenderer(this->window, -1, 0);
+  /**SetRenderer* setRenderer = new SetRenderer(renderer);
+  setRenderer->render();
+  delete setRenderer;
+  **/
+  EntityRenderer* entityRenderer = new EntityRenderer(renderer);
+  entityRenderer->render();
+  delete entityRenderer;
 
+
+  SDL_RenderPresent(renderer); 
 }

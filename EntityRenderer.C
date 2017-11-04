@@ -6,6 +6,9 @@
 #include "State.h"
 #include "Renderer.h"
 #include "EntityRenderer.h"
+const char* PLAYER_SPRITE_SHEET = "assets/images/characters.png";
+
+
 EntityRenderer::EntityRenderer(SDL_Renderer* renderer) : Renderer(renderer) {
   this->rootRenderer = renderer;
 }

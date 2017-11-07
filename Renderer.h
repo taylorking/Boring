@@ -4,5 +4,5 @@ class Renderer {
     virtual void render() {};
     ~Renderer();
   protected:
-    SDL_Renderer* rootRenderer;
+    SDL_Renderer* renderer;
 };

@@ -2,7 +2,7 @@
 #include "Renderer.h" 
 
 Renderer::Renderer(SDL_Renderer* renderer) {
-  this->rootRenderer = renderer;
+  this->renderer = renderer;
 }
 
 Renderer::~Renderer() { 

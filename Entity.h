@@ -5,5 +5,5 @@ class Entity {
     virtual void move() {};
   private: 
     int xPos, yPos;
-
+    int state; 
 };

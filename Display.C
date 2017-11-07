@@ -80,19 +80,22 @@ void Display::playIntro() {
   SDL_RenderCopy(renderer, message, NULL, &messageRect);
   SDL_RenderPresent(renderer);
   SDL_Delay(3000);
+  SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+  SDL_RenderClear(renderer);
+  SDL_RenderPresent(renderer);
 }
 
 // Invoke outside renderers and then just render
 void Display::update() {
-  SDL_Renderer* renderer = SDL_CreateRenderer(this->window, -1, 0);
+  SDL_Renderer* renderer = SDL_GetRenderer(this->window);
+  if (renderer == NULL) {
+    renderer = SDL_CreateRenderer(this->window, -1, 0);
+  }
   /**SetRenderer* setRenderer = new SetRenderer(renderer);
   setRenderer->render();
   delete setRenderer;
   **/
   EntityRenderer* entityRenderer = new EntityRenderer(renderer);
   entityRenderer->render();
-  delete entityRenderer;
-
-
   SDL_RenderPresent(renderer); 
 }
